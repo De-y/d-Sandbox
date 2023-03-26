@@ -46,7 +46,7 @@ export default function Home() {
             Website written in JSX and uses NextJS as the tech stack and tailwind
             for CSS.
             <br />
-            <br />©2023 de-y.
+            <br />©2023 de-y. All rights reserved.
           </h1>
         </div>
       </main>
