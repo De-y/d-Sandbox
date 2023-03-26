@@ -18,7 +18,7 @@ module.exports = {
       'sans': ['ui-sans-serif', 'system-ui', ],
       'serif': ['ui-serif', 'Georgia',],
       'mono': ['ui-monospace', 'SFMono-Regular'],
-      'display': ['Poppins',],
+      'display': ['var(--font-poppins)',],
       'body': ['Noto Sans JP', 'sans-serif'],
     }
   },
