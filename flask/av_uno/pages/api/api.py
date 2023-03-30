@@ -7,7 +7,6 @@ import uuid, hashlib, datetime
 
 
 app = Flask(__name__)
-PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
 app.config['AVPASS_CLIENT_ID'] = '64008b39-9a69-4a65-b54d-bff3081cb626'
 app.config['AVPASS_CLIENT_SECRET'] = '271367673dc870f17dd253a8792b9d9b3ff76d252608d0906ac917e53ccfbaf3'
 
