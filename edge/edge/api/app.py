@@ -1,28 +1,35 @@
 from flask import Flask, request, send_from_directory
-import hashlib
+import hashlib, os
 
 app = Flask(__name__)
 
 # Route to serve static files from the 'static' directory
 @app.route('/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('static', filename)
+    return send_from_directory('/tmp/', filename)
 
 # Create an upload route that upload files from the get request
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
     if request.method == 'POST':
-        password = 'Welcome to the de-y"s personal CDN' + request.form['password'] + 'aviance SALT.'
-        password = hashlib.sha3_512(password.encode()).hexdigest()
-        print(password)
-        if password != '121a07d9a00343dd1ecc5549ccdd92bbcbdabdb233dce77f66bc0b29c662d08a61f3ede8ca20f887fed14415ab4282f3f78862a846f32e4ac0b65f811b3fd1c0':
-            return 'Wrong password'
-        
-        
-        file = request.files['file']
-        file.save('static/' + file.filename)
-        return 'File uploaded successfully'
+        try:
+            # Create 'static' directory if it doesn't exist
+            if not os.path.exists('/tmp/'):
+                os.makedirs('/tmp/')
+            
+            password = 'Welcome to the de-y"s personal CDN' + request.form['password'] + 'aviance SALT.'
+            password = hashlib.sha3_512(password.encode()).hexdigest()
+            print(password)
+            if password != '9f82007a073647ef7c36669eafba878cb82f68f285f923f5a3ee22aaf3e524fb8e95f60bf6f11caa846e6ad7ed6e1661a5eca939b02c4e449747b70b47c1c59c':
+                return 'Wrong password'
+            
+            file = request.files['file']
+            file.save('/tmp/' + file.filename)
+            return 'File uploaded successfully, go see it at: <a href="https://de-yscdn.vercel.app/' + file.filename + '">https://de-yscdn.vercel.app/' + file.filename + '</a>'
+        except Exception as e:
+            print(e)
+            return 'Error uploading file, error:' + str(e)
     
     if request.method == 'GET':
         return """
@@ -31,10 +38,10 @@ def upload_file():
         <body>
         <form action="/upload" method="post" enctype="multipart/form-data">
         <center>
-        Select image to upload:<br><br>
+        Select file to upload and enter the key:<br><br>
         <input type="file" name="file" id="file"><br><br>
         <input type="text" value="Password" name="password"><br><br>
-        <input type="submit" value="Upload Image" name="submit">
+        <input type="submit" value="Upload" name="submit">
         </center>
         </form>
         </body>
