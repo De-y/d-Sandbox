@@ -22,5 +22,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='home'),
     path('app/', appView.as_view(), name='app'),
     path('admin/', admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),  # new
+    path("service/", include("django.contrib.auth.urls")),  # new
 ]

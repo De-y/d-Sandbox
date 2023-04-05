@@ -5,5 +5,5 @@ from django.contrib import admin
 urlpatterns = [
     path('', IndexView.as_view(template_name='index.html'), name='home'),
     path('app/', appView.as_view(), name='app'),
-    path("accounts/", include("django.contrib.auth.urls")),  # new
+    path("service/", include("django.contrib.auth.urls")),  # new
 ]
