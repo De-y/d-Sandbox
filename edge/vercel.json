@@ -1,15 +1,8 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "./cdn.py",
-            "use": "@vercel/python"
-        }
-    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "api/app.py"
+      }
     ]
-}
+  }
