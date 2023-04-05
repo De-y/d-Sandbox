@@ -13,10 +13,10 @@ def serve_static(filename):
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
     if request.method == 'POST':
-        password = 'Salt Test' + request.form['password'] + 'This isnt really a salt, but it does get the job done with the hash.'
+        password = 'Welcome to the de-y"s personal CDN' + request.form['password'] + 'aviance SALT.'
         password = hashlib.sha3_512(password.encode()).hexdigest()
         print(password)
-        if password != 'fcfb5a245b0252b9b45ec7ed10cc9ccf0066696ca3a7921c3691764a658869db481a1d28655496880c534aba29829c623275fbf8f27fd112731b5101c255a0b7':
+        if password != '121a07d9a00343dd1ecc5549ccdd92bbcbdabdb233dce77f66bc0b29c662d08a61f3ede8ca20f887fed14415ab4282f3f78862a846f32e4ac0b65f811b3fd1c0':
             return 'Wrong password'
         
         
