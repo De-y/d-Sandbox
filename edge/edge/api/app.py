@@ -47,6 +47,41 @@ def upload_file():
     
         """
 
+@app.route('/delete/<filename>', methods=['POST', 'GET'])
+def delete_file(filename):
+    if request.method == 'POST':
+        try:
+            password = 'TestCDN' + request.form['password'] + 'Welcome to the TestCDN.'
+            password = hashlib.sha3_512(password.encode()).hexdigest()
+            print(password)
+            if password != '3367a2008005663d366f6b4d239d0a90417490991c445293061900b851516b43a7d2c5146368a96f052768c0c81353d4aa979d9f39955ee0327c29d124b40c99':
+                return 'Wrong password'
+
+            filepath = '/tmp/' + filename
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                return 'File deleted successfully'
+            else:
+                return 'File does not exist'
+        except Exception as e:
+            print(e)
+            return 'Error deleting file, error:' + str(e)
+
+    if request.method == 'GET':
+        return """
+        <!DOCTYPE html>
+        <html>
+        <body>
+        <form action="/delete/""" + filename + """" method="post">
+        <center>
+        <p>Test flask CDN </p><br><br>
+        Enter the key to delete the file:<br><br>
+        <input type="text" value="TestPassword" name="password"><br><br>
+        <input type="submit" value="Delete" name="submit">
+        </center>
+        </form>
+        </body>
+        </html>"""
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
