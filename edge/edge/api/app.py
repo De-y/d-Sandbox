@@ -23,7 +23,7 @@ def upload_file():
             file = request.files['file']
             filename = file.filename.replace(' ', '-')
             file.save('/tmp/' + filename)
-            return 'File uploaded successfully, go see it at: <a href="https://testflaskcdn.vercel.app/' + filename + '">https://testflaskcdn.vercel.app/' + file.filename + '</a>'
+            return 'File uploaded successfully, go see it at: <a href="https://testflaskcdn.vercel.app/' + filename + '">https://testflaskcdn.vercel.app/' + filename + '</a>'
         except Exception as e:
             print(e)
             return 'Error uploading file, error:' + str(e)
