@@ -1,0 +1,9 @@
+public Clothing(String size, String color)
+{
+    this.size=size;
+    this.color=color;
+    // this.x=0;
+
+    // always initialize all the instance variables
+    //even though the parameters are incomplete
+}

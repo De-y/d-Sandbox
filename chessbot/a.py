@@ -6,7 +6,7 @@ import os, flask, json
 
 CLIENT_SECRET_FILE = 'client_secret.json'
 API_NAME = 'youtube'
-API_VERSION = 'v3'
+API_VERSION = 'v2'
 SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 
@@ -27,15 +27,13 @@ def index():
 
     if request.method == 'POST':
 
-        video_id = 'MbppYBjbPBo'
+        video_id = 'OG1fUQMHl1o'
         
         report = {
-            'reasonId': '5',
-            'comments': 'This video is inappropriate',
+            'abuse_reason': 'spam',
             'videoId': video_id,
             'language': 'en'
         }
-
 
         youtube.videos().reportAbuse(body=report).execute()
 
